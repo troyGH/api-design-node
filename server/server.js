@@ -29,6 +29,11 @@ app.post('/lions', function(req, res) {
   res.json(lion);
 });
 
+app.delete('/lions/:id', function(req, res) {
+  var newLions = _.without(lions, _.findWhere(lions, {id: req.params.id}));
+  lions = newLions;
+  id--;
+});
 
 app.put('/lions/:id', function(req, res) {
   var update = req.body;
@@ -50,4 +55,3 @@ app.set('port', (process.env.PORT || 8080));
 app.listen(app.get('port'), function() {
  console.log("Node app is running at localhost:" + app.get('port'))
 });
-
